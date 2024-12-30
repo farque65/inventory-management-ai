@@ -36,9 +36,12 @@ Collectibles Inventory is a web application designed to help users manage their 
 
 2. Install frontend dependencies:
 
+    ```sh
     npm install
 
 3. Create a .env file in the root directory and add the following environment variables:
+    
+    ```sh
     VITE_SUPABASE_URL=your-supabase-url
     VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
 
