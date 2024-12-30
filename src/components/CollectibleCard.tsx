@@ -1,4 +1,3 @@
-import React from 'react';
 import { Pencil, Trash2 } from 'lucide-react';
 import { Collectible } from '../types';
 
@@ -36,7 +35,7 @@ export function CollectibleCard({ collectible, onEdit, onDelete }: Props) {
         <p className="text-gray-600 text-sm mb-2 line-clamp-2">{collectible.description}</p>
         <div className="flex justify-between items-center">
           <span className="text-green-600 font-medium">
-            ${collectible.estimatedValue.toLocaleString()}
+            ${collectible?.estimatedValue?.toLocaleString()}
           </span>
           <div className="flex gap-2">
             <button

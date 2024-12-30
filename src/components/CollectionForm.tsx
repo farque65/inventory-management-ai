@@ -1,21 +1,40 @@
-import React from 'react';
 import { X } from 'lucide-react';
-import { Group } from '../types';
+import React from 'react';
+import { useCollections } from '../hooks/useCollections';
+import type { Collection, NewCollection } from '../types/collections';
 
 interface Props {
-  group?: Group;
-  onSubmit: (group: Omit<Group, 'id'>) => void;
+  collection?: Collection;
+  onSubmit: (collection: Omit<Collection, 'id'>) => void;
   onClose: () => void;
+  user_id?: string;
 }
 
-export function GroupForm({ group, onSubmit, onClose }: Props) {
+export function CollectionForm({ user_id, collection, onClose }: Props) {
+  const { addCollection, updateCollection } = useCollections();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    onSubmit({
+
+    const collectionData = {
       name: formData.get('name') as string,
       description: formData.get('description') as string,
-    });
+      user_id: user_id || null,
+    };
+
+    try {
+      if (collection) {
+        // Update collection
+        updateCollection(collection.id, collectionData);
+      } else {
+        // Create new collection
+        addCollection(collectionData);
+      }
+      onClose();
+    } catch (error) {
+      console.error('Error saving collection:', error);
+    }
   };
 
   return (
@@ -23,7 +42,7 @@ export function GroupForm({ group, onSubmit, onClose }: Props) {
       <div className="bg-white rounded-lg w-full max-w-md">
         <div className="flex justify-between items-center p-4 border-b">
           <h2 className="text-xl font-semibold">
-            {group ? 'Edit Group' : 'Create New Group'}
+            {collection ? 'Edit collection' : 'Create New collection'}
           </h2>
           <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full">
             <X size={20} />
@@ -38,7 +57,7 @@ export function GroupForm({ group, onSubmit, onClose }: Props) {
               type="text"
               id="name"
               name="name"
-              defaultValue={group?.name}
+              defaultValue={collection?.name}
               required
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             />
@@ -50,7 +69,7 @@ export function GroupForm({ group, onSubmit, onClose }: Props) {
             <textarea
               id="description"
               name="description"
-              defaultValue={group?.description}
+              defaultValue={collection?.description}
               rows={3}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             />
@@ -67,7 +86,7 @@ export function GroupForm({ group, onSubmit, onClose }: Props) {
               type="submit"
               className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
             >
-              {group ? 'Save Changes' : 'Create Group'}
+              {collection ? 'Save Changes' : 'Create Collection'}
             </button>
           </div>
         </form>
