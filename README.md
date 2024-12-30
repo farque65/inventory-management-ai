@@ -1,6 +1,6 @@
 # Inventory Management AI
 
-Collectibles Inventory is a web application designed to help users manage their collections of various items. The application allows users to create, update, and delete collectibles and organize them into collections. It also provides authentication and authorization features to ensure that users can only manage their own data.
+Inventory Management AI is a web application designed to help users manage their collections of various items. The application allows users to create, update, and delete collectibles and organize them into collections. It also provides authentication and authorization features to ensure that users can only manage their own data.
 
 ## Features
 

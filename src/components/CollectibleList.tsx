@@ -5,18 +5,18 @@ import type { Collectible } from '../types/collectibles';
 import { CollectibleCard } from './CollectibleCard';
 
 interface Props {
-  groupId?: string;
+  collectionId?: string;
   onEdit: (collectible: Collectible) => void;
   onAdd: () => void;
 }
 
-export function CollectibleList({ groupId, onEdit, onAdd }: Props) {
+export function CollectibleList({ collectionId, onEdit, onAdd }: Props) {
   const {
     collectibles,
     isLoading,
     fetchCollectibles,
     deleteCollectible
-  } = useCollectibles(groupId);
+  } = useCollectibles(collectionId);
 
   useEffect(() => {
     fetchCollectibles();
@@ -34,7 +34,7 @@ export function CollectibleList({ groupId, onEdit, onAdd }: Props) {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold text-gray-900">
-          {groupId ? 'Collection Collectibles' : 'All Collectibles'}
+          {collectionId ? 'Collection Collectibles' : 'All Collectibles'}
         </h2>
         <button
           onClick={onAdd}

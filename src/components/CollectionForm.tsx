@@ -2,6 +2,7 @@ import { X } from 'lucide-react';
 import React from 'react';
 import { useCollections } from '../hooks/useCollections';
 import type { Collection, NewCollection } from '../types/collections';
+import { useCollectibles } from '../hooks/useCollectibles';
 
 interface Props {
   collection?: Collection;
@@ -12,6 +13,7 @@ interface Props {
 
 export function CollectionForm({ user_id, collection, onClose }: Props) {
   const { addCollection, updateCollection } = useCollections();
+  const { fetchCollectibles } = useCollectibles();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,6 +33,7 @@ export function CollectionForm({ user_id, collection, onClose }: Props) {
         // Create new collection
         addCollection(collectionData);
       }
+      fetchCollectibles();
       onClose();
     } catch (error) {
       console.error('Error saving collection:', error);

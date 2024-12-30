@@ -12,7 +12,7 @@ interface Props {
 
 export function CollectibleForm({ user_id, collectible, onClose }: Props) {
   const { collections, isLoading: isLoadingCollections, fetchCollections } = useCollections();
-  const { addCollectible, updateCollectible } = useCollectibles();
+  const { addCollectible, updateCollectible, fetchCollectibles } = useCollectibles();
 
   useEffect(() => {
     fetchCollections();
@@ -39,6 +39,7 @@ export function CollectibleForm({ user_id, collectible, onClose }: Props) {
       } else {
         await addCollectible(collectibleData);
       }
+      fetchCollectibles();
       onClose();
     } catch (error) {
       console.error('Error saving collectible:', error);
