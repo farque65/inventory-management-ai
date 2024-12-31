@@ -4,6 +4,9 @@ import { CollectibleForm } from './components/CollectibleForm';
 import { CollectibleList } from './components/CollectibleList';
 import CollectionButton from './components/CollectionButton';
 import { CollectionForm } from './components/CollectionForm';
+import { FilterModal, Filters } from './components/FilterModal';
+import { Footer } from './components/Footer';
+import { SearchBar } from './components/Searchbar';
 import { CollectiblesProvider } from './context/CollectibleContext';
 import { useAuth } from './hooks/useAuth';
 import type { Collectible } from './types/collectibles';
@@ -15,6 +18,14 @@ export default function App() {
   const [selectedCollection, setSelectedCollection] = useState<Collection | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isCollectionFormOpen, setIsCollectionFormOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+  const [filters, setFilters] = useState<Filters>({
+    priceRange: { min: 0, max: null, label: 'All Prices' },
+    conditions: [],
+    minRating: 0,
+    sortBy: 'price-asc',
+  });
 
   const handleEdit = (collectible: Collectible) => {
     setSelectedCollectible(collectible);
@@ -49,6 +60,12 @@ export default function App() {
               </button>
             </div>
           </div>
+          <div className="mt-10 flex justify-center">
+            <SearchBar 
+              onSearch={setSearchQuery}
+              onFilter={() => setIsFilterModalOpen(true)}
+            />
+          </div>
         </div>
       </header>
 
@@ -74,7 +91,16 @@ export default function App() {
           user_id={user?.id}
         />
       )}
+
+      {isFilterModalOpen && 
+        <FilterModal
+        isOpen={isFilterModalOpen}
+        onClose={() => setIsFilterModalOpen(false)}
+        filters={filters}
+        onFilterChange={setFilters}
+      />}
     </div>
+    <Footer />
     </CollectiblesProvider>
   );
 }
