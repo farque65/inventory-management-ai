@@ -1,4 +1,3 @@
-import { Dir } from "node:fs"
 import { Twitter } from "lucide-react";
 
 export function Footer() {
@@ -29,7 +28,9 @@ return (
         </div>
         <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
           <p>&copy; 2024 Inventory Management AI. All rights reserved.</p>
-          <p>Made with ❤️ by <a href="https://amrakori.com" target="_blank" className="hover:text-white">Amrakori</a></p>
+            <a href="https://amrakori.com" target="_blank" className="hover:text-white">
+            Made with ❤️ by Amrakori
+            </a>
         </div>
       </div>
     </footer>

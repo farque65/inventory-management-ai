@@ -1,5 +1,5 @@
 import { Pencil, Trash2 } from 'lucide-react';
-import { Collectible } from '../types';
+import { Collectible } from '../types/collectibles';
 
 interface Props {
   collectible: Collectible;
