@@ -1,10 +1,12 @@
+import { ConditionRating } from ".";
+
 export interface Collectible {
   id: string;
   name: string;
   description?: string;
   acquisition_date?: string;
   estimated_value?: number;
-  condition?: 'mint' | 'excellent' | 'good' | 'fair' | 'poor';
+  condition?: ConditionRating;
   image_url?: string | null;
   collection_id?: string | null;
   user_id?: string;

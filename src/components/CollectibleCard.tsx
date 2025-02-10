@@ -20,7 +20,7 @@ export function CollectibleCard({ collectible, onEdit, onDelete }: Props) {
     <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-[1.02]">
       <div className="aspect-square overflow-hidden">
         <img
-          src={collectible.imageUrl || 'https://images.unsplash.com/photo-1595079676601-f1adf5be5dee?q=80&w=800'}
+          src={collectible.image_url || 'https://images.unsplash.com/photo-1595079676601-f1adf5be5dee?q=80&w=800'}
           alt={collectible.name}
           className="w-full h-full object-cover"
         />

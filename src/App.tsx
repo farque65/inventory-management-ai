@@ -6,7 +6,7 @@ import CollectionButton from './components/CollectionButton';
 import { CollectionForm } from './components/CollectionForm';
 import { FilterModal, Filters } from './components/FilterModal';
 import { Footer } from './components/Footer';
-import { SearchBar } from './components/Searchbar';
+import { SearchBar } from './components/SearchBar';
 import { CollectiblesProvider } from './context/CollectibleContext';
 import { useAuth } from './hooks/useAuth';
 import type { Collectible } from './types/collectibles';

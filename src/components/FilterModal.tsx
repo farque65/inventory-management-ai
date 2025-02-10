@@ -1,6 +1,5 @@
-import React from 'react';
-import { X, Check } from 'lucide-react';
-import { PriceRange, ConditionRating } from '../types';
+import { Check, X } from 'lucide-react';
+import { ConditionRating, PriceRange } from '../types';
 
 interface FilterModalProps {
   isOpen: boolean;
@@ -40,7 +39,7 @@ export function FilterModal({ isOpen, onClose, filters, onFilterChange }: Filter
     onFilterChange({ ...filters, priceRange: range });
   };
 
-  const handleConditionToggle = (condition: Condition) => {
+  const handleConditionToggle = (condition: ConditionRating) => {
     const newConditions = filters.conditions.includes(condition)
       ? filters.conditions.filter(c => c !== condition)
       : [...filters.conditions, condition];
